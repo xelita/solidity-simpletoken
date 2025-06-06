@@ -69,7 +69,7 @@ describe("Token contract", function () {
       // Try to send 1 token from addr1 (0 tokens) to owner.
       await expect(
         contract.connect(addr1).transfer(owner.address, 1)
-      ).to.be.revertedWith("Not enough tokens");
+      ).to.be.revertedWithCustomError(contract, "NotEnoughTokens");
 
       // Owner balance shouldn't have changed.
       expect(await contract.balanceOf(owner.address)).to.equal(
